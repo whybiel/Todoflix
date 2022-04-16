@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/Todoflix/static/js/main.b936712d.js",
+    "static/js/787.fedb6192.chunk.js": "/Todoflix/static/js/787.fedb6192.chunk.js",
+    "index.html": "/Todoflix/index.html",
+    "main.b936712d.js.map": "/Todoflix/static/js/main.b936712d.js.map",
+    "787.fedb6192.chunk.js.map": "/Todoflix/static/js/787.fedb6192.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b936712d.js"
+  ]
+}
