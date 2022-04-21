@@ -16,6 +16,7 @@ import Icon from "./img/icon.png"
 import Modal from "./components/categorias";
 import BtnModal from "./components/addbuton"
 import Rota from "./components/routes"
+import Btn_fav from "./components/butonfav"
 
 const GlobalStyle = createGlobalStyle`
   *{
