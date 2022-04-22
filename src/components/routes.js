@@ -12,7 +12,7 @@ export default class App extends React.Component {
         return (
             <>
                 <Routes>
-                    <Route path="/" exact element={<Inicio />}/>
+                    <Route path="/Todoflix" exact element={<Inicio />}/>
                     <Route path="/todos" element={<Todos />} />
                     <Route path="/favoritos" element={<Favoritos />} />
                     <Route path="/vistos" element={<Vistos />} />

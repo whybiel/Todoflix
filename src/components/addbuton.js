@@ -12,6 +12,7 @@ const Container = styled.div`
     position:absolute;
     top:10vh;
     left:21vw;
+    z-index:5;
 `
 
 export default class App extends React.Component{
