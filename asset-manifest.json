@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/Todoflix/static/js/main.d6ef4617.js",
+    "main.js": "/Todoflix/static/js/main.e0ca62fc.js",
     "static/js/787.fedb6192.chunk.js": "/Todoflix/static/js/787.fedb6192.chunk.js",
     "static/media/squad.jpg": "/Todoflix/static/media/squad.af2817efbb10f369720d.jpg",
     "index.html": "/Todoflix/index.html",
-    "main.d6ef4617.js.map": "/Todoflix/static/js/main.d6ef4617.js.map",
+    "main.e0ca62fc.js.map": "/Todoflix/static/js/main.e0ca62fc.js.map",
     "787.fedb6192.chunk.js.map": "/Todoflix/static/js/787.fedb6192.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.d6ef4617.js"
+    "static/js/main.e0ca62fc.js"
   ]
 }
