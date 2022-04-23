@@ -15,7 +15,6 @@ const StyleCaro = {
     itemPadding: [0, 6],
     pagination: false,
     enableMouseSwipe: false,
-    showArrows: false,
     outerSpacing: 35
 }
 
@@ -25,7 +24,7 @@ const Container = styled.section`
 `
 const SubCont1 = styled.div`
     width:81%;
-    height:49%;
+    height:48%;
     display:flex;
     align-items:center;
     justify-content:space-evenly;

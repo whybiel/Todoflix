@@ -8,7 +8,7 @@ import Seta from "../img/seta.png"
 import Icon from "../img/icon.png"
 import Modal from "../components/categorias";
 import BtnModal from "../components/addbuton"
-
+import Todos from "../pages/todos"
 
 const NavBar = styled.nav`
   width:100%;
@@ -77,9 +77,9 @@ export default class App extends React.Component {
 
     state = {
         statemodal: false,
-        butonmodal: false
+        butonmodal: false,
       }
-    
+          
       openmodal_cat = () => {
         this.setState({ statemodal: !this.state.statemodal })
       }
@@ -91,7 +91,7 @@ export default class App extends React.Component {
     render() {
         return (
             <NavBar>
-                <SubCont>
+                <SubCont>     
                     <ImageLg src={Logo} alt="Logo todoflix" />
                     <Text_h4><Anchor to="/Todoflix">Inicio</Anchor></Text_h4>
                     <Text_h4 onClick={this.openmodal_cat}>Categorias<span>&#9663;</span></Text_h4>
@@ -101,7 +101,7 @@ export default class App extends React.Component {
                 <SubCont2>
                     <BtnAdd onClick={this.openmodal_buton}>Adicionar Filme</BtnAdd>
                     {this.state.butonmodal && <BtnModal />}
-                    <Search type="text" placeholder="Pesquise" />
+                    <Link to="/todos"><Search  type="text" placeholder="Pesquise" /></Link>
                     <User>
                         <UserImg src={Perfil} alt="icone de usuário" />
                         <ImageSeta src={Seta} />

@@ -11,6 +11,7 @@ const Container = styled.div`
     position:absolute;
     top:6.5vh;
     left:18vw;
+    
 `
 const List = styled.ul`
   width:100%;

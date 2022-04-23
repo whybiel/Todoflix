@@ -15,8 +15,18 @@ const GlobalStyle = createGlobalStyle`
     font-family:arial, sans-serif;
   }
   body{
-    width:100vw;
     background-color:#000;
+  }
+  ::-webkit-scrollbar{
+    width:5px;
+  }
+  ::-webkit-scrollbar-track{
+    background:#000;
+  }
+  ::-webkit-scrollbar-thumb{
+    width:2px;
+    background: #E71B27;
+    border-radius: 5px;
   }
 `
 
