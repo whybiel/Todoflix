@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import Logo from "../img/logo.png"
 import Perfil from "../img/perfil.png"
-import Seta from "../img/seta.png"
 import Icon from "../img/icon.png"
+import Seta from "../img/seta.png"
 import Modal from "../components/categorias";
 import BtnModal from "../components/addbuton"
-import Todos from "../pages/todos"
+
 
 const NavBar = styled.nav`
   width:100%;
@@ -75,39 +75,43 @@ const ImageSeta = styled.img`
 `
 export default class App extends React.Component {
 
-    state = {
-        statemodal: false,
-        butonmodal: false,
-      }
-          
-      openmodal_cat = () => {
-        this.setState({ statemodal: !this.state.statemodal })
-      }
-    
-      openmodal_buton = () => {
-        this.setState({ butonmodal: !this.state.butonmodal })
-      }
+  state = {
+    statemodal: false,
+    butonmodal: false,
+  }
+  
 
-    render() {
-        return (
-            <NavBar>
-                <SubCont>     
-                    <ImageLg src={Logo} alt="Logo todoflix" />
-                    <Text_h4><Anchor to="/Todoflix">Inicio</Anchor></Text_h4>
-                    <Text_h4 onClick={this.openmodal_cat}>Categorias<span>&#9663;</span></Text_h4>
-                    {this.state.statemodal && <Modal />}
-                </SubCont>
+  openmodal_cat = () => {
+    this.setState({ statemodal: !this.state.statemodal })
+  }
 
-                <SubCont2>
-                    <BtnAdd onClick={this.openmodal_buton}>Adicionar Filme</BtnAdd>
-                    {this.state.butonmodal && <BtnModal />}
-                    <Link to="/todos"><Search  type="text" placeholder="Pesquise" /></Link>
-                    <User>
-                        <UserImg src={Perfil} alt="icone de usuário" />
-                        <ImageSeta src={Seta} />
-                    </User>
-                </SubCont2>
-            </NavBar>
-        )
-    }
+  openmodal_buton = () => {
+    this.setState({ butonmodal: !this.state.butonmodal })
+  }
+
+  render() {
+    return (
+      <>
+      <NavBar>
+        <SubCont>
+          <ImageLg src={Logo} alt="Logo todoflix" />
+          <Text_h4><Anchor to="/Todoflix">Inicio</Anchor></Text_h4>
+          <Text_h4 onClick={this.openmodal_cat}>Categorias<span>&#9663;</span></Text_h4>
+          {this.state.statemodal && <Modal />}
+        </SubCont>
+
+        <SubCont2>
+          <BtnAdd onClick={this.openmodal_buton}>Adicionar Filme</BtnAdd>
+          {this.state.butonmodal && <BtnModal />}
+          <Search type="text" placeholder="Pesquise" />
+          <User>
+            <UserImg src={Perfil} alt="icone de usuário" />
+            <ImageSeta src={Seta} />
+          </User>
+        </SubCont2>
+      </NavBar>
+      </>
+      
+    )
+  }
 }

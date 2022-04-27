@@ -26,7 +26,7 @@ export default class App extends React.Component{
     render(){
         return(
             <>
-            <Btn>&#10084;</Btn>
+            <Btn title="Favorito">&#10084;</Btn>
             </>
         )
     }

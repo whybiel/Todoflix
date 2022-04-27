@@ -6,6 +6,7 @@ import Rota from "./components/routes"
 import Header from "./pages/header"
 
 
+
 const GlobalStyle = createGlobalStyle`
   *{
     margin:0;
@@ -32,7 +33,10 @@ const GlobalStyle = createGlobalStyle`
 
 export default class App extends React.Component {
 
-  
+  state = {
+    
+}
+
 
   render() {
     return (

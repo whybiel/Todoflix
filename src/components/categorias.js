@@ -11,6 +11,7 @@ const Container = styled.div`
     position:absolute;
     top:6.5vh;
     left:18vw;
+    z-index:5;
     
 `
 const List = styled.ul`
