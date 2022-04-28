@@ -7,6 +7,7 @@ import Squad from "../img/squad.jpg"
 import Btn_fav from "../components/butonfav"
 import Destaque from "../destaque.json"
 
+
 const StyleCaro = {
     itemsToShow: 4,
     focusOnSelect: true,
@@ -111,7 +112,8 @@ export default class App extends React.Component {
         filmeDestaque: {
             title: "O Esquadrão Suicida 2",
             situation: "Visto Recentemente",
-            overview: "O governo envia os supervilões mais perigosos do mundo para a remota ilha de Corto Maltese, repleta de inimigos. Armados com armas de alta tecnologia, eles viajam pela selva perigosa em uma missão de busca e destruição com o Coronel Rick Flag."
+            overview: "O governo envia os supervilões mais perigosos do mundo para a remota ilha de Corto Maltese, repleta de inimigos. Armados com armas de alta tecnologia, eles viajam pela selva perigosa em uma missão de busca e destruição com o Coronel Rick Flag.",
+            nota: 5
         },
         filmes: Destaque
     }
@@ -128,6 +130,11 @@ export default class App extends React.Component {
                         <Sit_Txt>{filmeDestaque.situation}</Sit_Txt>
                         <Title_Txt>{filmeDestaque.title}</Title_Txt>
                         <Text>{filmeDestaque.overview}</Text>
+                        <p style={{padding:"0 0.5vw 0 0.5vw"}}>{this.state.filmeDestaque.nota}/5</p>
+                        <Svg style={{ padding: "0 0vw 0.5vh 0" }} id="Icon_Thumbs_Up_Filled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                            <rect id="Box" width="17" height="17" fill="none" />
+                            <path id="Path_1994" data-name="Path 1994" d="M97-8.286h2.805v-8.229H97Zm15.429-7.543a1.391,1.391,0,0,0-1.4-1.371H106.6l.666-3.134.021-.219a1.021,1.021,0,0,0-.309-.727l-.743-.72-4.615,4.519a1.326,1.326,0,0,0-.414.967v6.857a1.391,1.391,0,0,0,1.4,1.371h6.312a1.394,1.394,0,0,0,1.29-.837l2.118-4.834a1.328,1.328,0,0,0,.1-.5v-1.31l-.007-.007Z" transform="translate(-96.143 23.714)" fill="white" style={this.state.filmeDestaque.nota >= 5 ? { fill: '#0B3B0B' } : this.state.filmeDestaque.nota === 4 ? { fill: '#64FE2E' } : this.state.filmeDestaque.nota === 3 ? { fill: 'yellow' } : { fill: 'red' }} />
+                        </Svg>
                     </Text_Div>
                 </SubCont1>
                 <SubCont2>
@@ -139,15 +146,15 @@ export default class App extends React.Component {
                                 <Img_slide src={item.poster} alt={`capa do filme ${item.title}`} />
                                 <Btn title="Favorito">&#10084;</Btn>
                                 <NameBox >
-                                <Title_slide>{item.title}</Title_slide>
-                                <div style={{width:"60px",height:"35px",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                    <p style={{padding:"0 0.5vw 0 0.5vw"}}>{item.nota}/5</p>
-                                    <Svg style={{padding:"0 0vw 0.5vh 0"}} id="Icon_Thumbs_Up_Filled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
-                                        <rect id="Box" width="17" height="17" fill="none" />
-                                        <path id="Path_1994" data-name="Path 1994" d="M97-8.286h2.805v-8.229H97Zm15.429-7.543a1.391,1.391,0,0,0-1.4-1.371H106.6l.666-3.134.021-.219a1.021,1.021,0,0,0-.309-.727l-.743-.72-4.615,4.519a1.326,1.326,0,0,0-.414.967v6.857a1.391,1.391,0,0,0,1.4,1.371h6.312a1.394,1.394,0,0,0,1.29-.837l2.118-4.834a1.328,1.328,0,0,0,.1-.5v-1.31l-.007-.007Z" transform="translate(-96.143 23.714)" fill="white" style={item.nota >= 5 ? { fill: '#0B3B0B' } : item.nota === 4 ? { fill: '#64FE2E' } : item.nota === 3 ? { fill: 'yellow' } : { fill: 'red' }} />
-                                    </Svg>
-                                </div>
-                            </NameBox>
+                                    <Title_slide>{item.title}</Title_slide>
+                                    <div style={{ width: "60px", height: "35px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <p style={{ padding: "0 0.5vw 0 0.5vw" }}>{item.nota}/5</p>
+                                        <Svg style={{ padding: "0 0vw 0.5vh 0" }} id="Icon_Thumbs_Up_Filled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                                            <rect id="Box" width="17" height="17" fill="none" />
+                                            <path id="Path_1994" data-name="Path 1994" d="M97-8.286h2.805v-8.229H97Zm15.429-7.543a1.391,1.391,0,0,0-1.4-1.371H106.6l.666-3.134.021-.219a1.021,1.021,0,0,0-.309-.727l-.743-.72-4.615,4.519a1.326,1.326,0,0,0-.414.967v6.857a1.391,1.391,0,0,0,1.4,1.371h6.312a1.394,1.394,0,0,0,1.29-.837l2.118-4.834a1.328,1.328,0,0,0,.1-.5v-1.31l-.007-.007Z" transform="translate(-96.143 23.714)" fill="white" style={item.nota >= 5 ? { fill: '#0B3B0B' } : item.nota === 4 ? { fill: '#64FE2E' } : item.nota === 3 ? { fill: 'yellow' } : { fill: 'red' }} />
+                                        </Svg>
+                                    </div>
+                                </NameBox>
                                 <Text_slide>{item.overview}</Text_slide>
                             </Cont_map>
 
