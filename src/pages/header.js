@@ -29,7 +29,7 @@ const ImageLg = styled.img`
   height:5vh;
   cursor:pointer;
 `
-const Text_h4 = styled.h4`
+const Texth4 = styled.h4`
   cursor:pointer;
 `
 const Anchor = styled(Link)`
@@ -110,11 +110,11 @@ export default class App extends React.Component {
       Filter: FilmsConvert
     })
   }
-  openmodal_cat = () => {
+  openmodalcat = () => {
     this.setState({ statemodal: !this.state.statemodal })
   }
 
-  openmodal_buton = () => {
+  openmodalbuton = () => {
     this.setState({ butonmodal: !this.state.butonmodal })
   }
 
@@ -125,13 +125,13 @@ export default class App extends React.Component {
         <NavBar>
           <SubCont>
             <ImageLg src={Logo} alt="Logo todoflix" />
-            <Text_h4><Anchor to="/">Inicio</Anchor></Text_h4>
-            <Text_h4 onClick={this.openmodal_cat}>Categorias<span>&#9663;</span></Text_h4>
+            <Texth4><Anchor to="/">Inicio</Anchor></Texth4>
+            <Texth4 onClick={this.openmodalcat}>Categorias<span>&#9663;</span></Texth4>
             {this.state.statemodal && <Modal />}
           </SubCont>
 
           <SubCont2>
-            <BtnAdd onClick={this.openmodal_buton}>Adicionar Filme</BtnAdd>
+            <BtnAdd onClick={this.openmodalbuton}>Adicionar Filme</BtnAdd>
             {this.state.butonmodal && <BtnModal />}
             <Search type="text" placeholder="Pesquise" onChange={this.filterFilms} />
             <User>

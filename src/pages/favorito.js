@@ -20,13 +20,13 @@ const SubContainer = styled.nav`
   flex-wrap:wrap;
   margin:0 0 0 2.4vw;
 `
-const Cont_map = styled.div`
+const Contmap = styled.div`
     width:19vw;
     height:100%;
     margin:1vh 0 4vh 1vw;
     position:relative;
 `
-const Img_slide = styled.img`
+const Imgslide = styled.img`
     width:100%;
     height:20vh;
     border-radius:5px;
@@ -48,7 +48,7 @@ const Btn = styled.button`
         background-color:red;
     }
 `
-const Title_slide = styled.h2`
+const Titleslide = styled.h2`
     font-size:15px;
     margin:1vh 0 1vh 0;
 `
@@ -63,7 +63,7 @@ const Svg = styled.svg`
     height:20px;
 `
 
-const Text_slide = styled.p`
+const Textslide = styled.p`
     font-size:12px;
     text-align:left;
 `
@@ -127,11 +127,11 @@ export default class App extends React.Component {
                     {this.state.Filter.map((item) => (
                         <>
                             {item.favorito && (
-                                <Cont_map>
-                                    <Img_slide src={item.poster} alt={`capa do filme ${item.title}`} />
+                                <Contmap>
+                                    <Imgslide src={item.poster} alt={`capa do filme ${item.title}`} />
                                     <Btn title="Favorito">&#10084;</Btn>
                                     <NameBox >
-                                        <Title_slide>{item.title}</Title_slide>
+                                        <Titleslide>{item.title}</Titleslide>
                                         <div style={{ width: "60px", height: "35px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                             <p style={{ padding: "0 0.5vw 0 0.5vw" }}>{item.nota}/5</p>
                                             <Svg style={{ padding: "0 0vw 0.5vh 0" }} id="Icon_Thumbs_Up_Filled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
@@ -140,8 +140,8 @@ export default class App extends React.Component {
                                             </Svg>
                                         </div>
                                     </NameBox>
-                                    <Text_slide>{item.overview}</Text_slide>
-                                </Cont_map>
+                                    <Textslide>{item.overview}</Textslide>
+                                </Contmap>
                             )}
                         </>
                     ))}
