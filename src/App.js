@@ -1,9 +1,14 @@
 import React from "react";
-import {BrowserRouter as Router} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { createGlobalStyle } from "styled-components";
 
-import Rota from "./components/routes"
+
+import Inicio from "./pages/inicio"
 import Header from "./pages/header"
+import Todos from "./pages/todos"
+import Favoritos from "./pages/favorito"
+import Vistos from "./pages/vistos"
+import Adicionados from "./pages/adicionados"
 
 
 
@@ -34,16 +39,23 @@ const GlobalStyle = createGlobalStyle`
 export default class App extends React.Component {
 
   state = {
-    
-}
+
+  }
 
 
   render() {
     return (
       <Router>
         <GlobalStyle />
-        <Header/>
-        <Rota />
+        <Header />
+        
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/todos" element={<Todos />} />
+          <Route path="/favoritos" element={<Favoritos />} />
+          <Route path="/vistos" element={<Vistos />} />
+          <Route path="/adicionados" element={<Adicionados />} />
+        </Routes>
       </Router>
     )
   }

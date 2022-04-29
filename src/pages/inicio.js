@@ -5,7 +5,8 @@ import Carousel from "react-elastic-carousel";
 
 import Squad from "../img/squad.jpg"
 import Btn_fav from "../components/butonfav"
-import Destaque from "../destaque.json"
+import Movies from "../state.json"
+import Icon from "../img/icon.png"
 
 
 const StyleCaro = {
@@ -61,7 +62,7 @@ const Title = styled.h2`
     margin:0 0 2vh 3.6vw;
 `
 const Cont_map = styled.div`
-    width:50vw;
+    width:22vw;
     height:100%;
     position:relative;
 `
@@ -105,6 +106,21 @@ const Text_slide = styled.p`
     font-size:12px;
     text-align:left;
 `
+const Search = styled.input`
+width:30vw;
+height:4vh;
+border:none;
+border-radius:4px;
+padding-left: 2.2vw;
+background-color:#2c2c2c;
+background-image: url(${Icon});
+background-repeat:no-repeat;
+background-position-y: center;
+background-position-x: 8px;
+position:absolute;
+top:3vh;
+left:59.6vw;
+`
 
 export default class App extends React.Component {
 
@@ -114,8 +130,36 @@ export default class App extends React.Component {
             situation: "Visto Recentemente",
             overview: "O governo envia os supervilões mais perigosos do mundo para a remota ilha de Corto Maltese, repleta de inimigos. Armados com armas de alta tecnologia, eles viajam pela selva perigosa em uma missão de busca e destruição com o Coronel Rick Flag.",
             nota: 5
-        },
-        filmes: Destaque
+    },
+    filmes: Movies,
+    Filter: []
+}
+    async componentDidMount() {
+        this.movies()
+    }
+    movies = async () => {
+        const FilmsFilter = this.setState({
+            Filter: this.state.filmes
+        })
+    }
+    filterFilms = (e) => {
+        const { filmes } = this.state
+
+        if (e.target.value === "") {
+            this.setState({
+                Filter: filmes
+            })
+            return
+        }
+        const FilmsConvert = filmes.filter((item) => {
+            if (item.title.toLowerCase().includes(e.target.value.toLowerCase())) {
+                return true
+            }
+        })
+
+        this.setState({
+            Filter: FilmsConvert
+        })
     }
 
     render() {
@@ -123,6 +167,7 @@ export default class App extends React.Component {
         let { filmeDestaque } = this.state
         return (
             <Container>
+                <Search type="text" placeholder="Pesquise" onChange={this.filterFilms} />
                 <SubCont1>
                     <Img_Dest src={Squad} alt="poster do filme: esquadrão suicida 2" />
                     <Text_Div>
@@ -140,7 +185,7 @@ export default class App extends React.Component {
                 <SubCont2>
                     <Title>Destaques</Title>
                     <Carousel {...StyleCaro}>
-                        {this.state.filmes.map((item) => (
+                        {this.state.Filter.map((item) => (
 
                             <Cont_map>
                                 <Img_slide src={item.poster} alt={`capa do filme ${item.title}`} />
