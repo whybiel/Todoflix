@@ -1,23 +1,27 @@
 import React from "react";
 import styled from "styled-components"
-import Carousel from "react-elastic-carousel";
+import Carrossel from "nuka-carousel";
 
 
 import Squad from "../img/squad.jpg"
 import Btnfav from "../components/butonfav"
 import Movies from "../state.json"
 import Icon from "../img/icon.png"
+import ModalS from "../components/search"
+import Arrow from "../img/proximo.png"
 
 
 const StyleCaro = {
-    itemsToShow: 4,
-    focusOnSelect: true,
-    enableAutoPlay: true,
-    autoPlaySpeed: 7000,
-    itemPadding: [0, 6],
-    pagination: false,
-    enableMouseSwipe: false,
-    outerSpacing: 35
+    
+    autoplay:true,
+    wrapAround: true,
+    slidesToShow:4,
+    pagination:false,
+    speed:400,
+    defaultControlsConfig: {
+        nextButtonStyle: { background: `url(${Arrow}) no-repeat center`, color: "transparent", height: "10vh", marginBottom: "5em",backgroundSize:"25px" },
+        prevButtonStyle: {opacity:0}
+    }
 }
 
 const Container = styled.section`
@@ -81,7 +85,7 @@ const Btn = styled.button`
     cursor:pointer;
     margin:1vh 0 2vh 0;
     position:absolute;
-    left:18.5vw;
+    left:19.5vw;
 
 
     &:focus{
@@ -106,20 +110,29 @@ const Textslide = styled.p`
     font-size:12px;
     text-align:left;
 `
-const Search = styled.input`
-width:30vw;
-height:4vh;
-border:none;
-border-radius:4px;
-padding-left: 2.2vw;
-background-color:#2c2c2c;
-background-image: url(${Icon});
-background-repeat:no-repeat;
-background-position-y: center;
-background-position-x: 8px;
-position:absolute;
-top:3vh;
-left:59.6vw;
+const Search = styled.button`
+    width:30px;
+    height:30px;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    background-color:#2c2c2c;
+    background-image: url(${Icon});
+    background-repeat:no-repeat;
+    background-size: 20px;
+    background-position-y: center;
+    background-position-x: center;
+    position:absolute;
+    top:3.3vh;
+    left:59.6vw;
+    cursor:pointer;
+
+    &:hover{
+        transform:rotate(360deg);
+        transition:2s;
+        border:1px solid #fff;
+        margin:0 0 1vh;
+    }
 `
 
 export default class App extends React.Component {
@@ -130,10 +143,11 @@ export default class App extends React.Component {
             situation: "Visto Recentemente",
             overview: "O governo envia os supervilões mais perigosos do mundo para a remota ilha de Corto Maltese, repleta de inimigos. Armados com armas de alta tecnologia, eles viajam pela selva perigosa em uma missão de busca e destruição com o Coronel Rick Flag.",
             nota: 5
-    },
-    filmes: Movies,
-    Filter: []
-}
+        },
+        filmes: Movies,
+        Filter: [],
+        searchmodal: false
+    }
     async componentDidMount() {
         this.movies()
     }
@@ -162,12 +176,18 @@ export default class App extends React.Component {
         })
     }
 
+    openmodalsearch = () => {
+        this.setState({ searchmodal: !this.state.searchmodal })
+    }
+    
+
     render() {
 
         let { filmeDestaque } = this.state
         return (
             <Container>
-                <Search type="text" placeholder="Pesquise" onChange={this.filterFilms} />
+                <Search onClick={this.openmodalsearch}></Search>
+                {this.state.searchmodal && <ModalS close={() => { this.setState({ searchmodal: false }) }}/>}
                 <SubCont1>
                     <ImgDest src={Squad} alt="poster do filme: esquadrão suicida 2" />
                     <TextDiv>
@@ -175,17 +195,20 @@ export default class App extends React.Component {
                         <SitTxt>{filmeDestaque.situation}</SitTxt>
                         <TitleTxt>{filmeDestaque.title}</TitleTxt>
                         <Text>{filmeDestaque.overview}</Text>
-                        <p style={{padding:"0 0.5vw 0 0.5vw"}}>{this.state.filmeDestaque.nota}/5</p>
-                        <Svg style={{ padding: "0 0vw 0.5vh 0" }} id="IconThumbsUpFilled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
-                            <rect id="Box" width="17" height="17" fill="none" />
-                            <path id="Path1994" data-name="Path 1994" d="M97-8.286h2.805v-8.229H97Zm15.429-7.543a1.391,1.391,0,0,0-1.4-1.371H106.6l.666-3.134.021-.219a1.021,1.021,0,0,0-.309-.727l-.743-.72-4.615,4.519a1.326,1.326,0,0,0-.414.967v6.857a1.391,1.391,0,0,0,1.4,1.371h6.312a1.394,1.394,0,0,0,1.29-.837l2.118-4.834a1.328,1.328,0,0,0,.1-.5v-1.31l-.007-.007Z" transform="translate(-96.143 23.714)" fill="white" style={this.state.filmeDestaque.nota >= 5 ? { fill: '#0B3B0B' } : this.state.filmeDestaque.nota === 4 ? { fill: '#64FE2E' } : this.state.filmeDestaque.nota === 3 ? { fill: 'yellow' } : { fill: 'red' }} />
-                        </Svg>
+                        <div style={{ display: "flex" }}>
+                            <p style={{ padding: "0 0.5vw 0 0.5vw" }}>{this.state.filmeDestaque.nota}/5</p>
+                            <Svg style={{ padding: "0 0vw 0.5vh 0" }} id="IconThumbsUpFilled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                                <rect id="Box" width="17" height="17" fill="none" />
+                                <path id="Path1994" data-name="Path 1994" d="M97-8.286h2.805v-8.229H97Zm15.429-7.543a1.391,1.391,0,0,0-1.4-1.371H106.6l.666-3.134.021-.219a1.021,1.021,0,0,0-.309-.727l-.743-.72-4.615,4.519a1.326,1.326,0,0,0-.414.967v6.857a1.391,1.391,0,0,0,1.4,1.371h6.312a1.394,1.394,0,0,0,1.29-.837l2.118-4.834a1.328,1.328,0,0,0,.1-.5v-1.31l-.007-.007Z" transform="translate(-96.143 23.714)" fill="white" style={this.state.filmeDestaque.nota >= 5 ? { fill: '#0B3B0B' } : this.state.filmeDestaque.nota === 4 ? { fill: '#64FE2E' } : this.state.filmeDestaque.nota === 3 ? { fill: 'yellow' } : { fill: 'red' }} />
+                            </Svg>
+                        </div>
+
                     </TextDiv>
                 </SubCont1>
                 <SubCont2>
                     <Title>Destaques</Title>
-                    <Carousel {...StyleCaro}>
-                        {this.state.Filter.map((item) => (
+                    <Carrossel style={{width:"95%",margin:"0 0 0 3.5vw"}} {...StyleCaro}>
+                        {this.state.filmes.map((item) => (
 
                             <Contmap>
                                 <Imgslide src={item.poster} alt={`capa do filme ${item.title}`} />
@@ -204,9 +227,29 @@ export default class App extends React.Component {
                             </Contmap>
 
                         ))}
-                    </Carousel>
+                    </Carrossel>
                 </SubCont2>
             </Container>
         )
     }
-}
+} /*<div>
+{this.state.Filter.map((item) => (
+
+    <Contmap>
+        <Imgslide src={item.poster} alt={`capa do filme ${item.title}`} />
+        <Btn title="Favorito">&#10084;</Btn>
+        <NameBox >
+            <Titleslide>{item.title}</Titleslide>
+            <div style={{ width: "60px", height: "35px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <p style={{ padding: "0 0.5vw 0 0.5vw" }}>{item.nota}/5</p>
+                <Svg style={{ padding: "0 0vw 0.5vh 0" }} id="IconThumbsUpFilled" data-name="Icon / Thumbs Up / Filled" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                    <rect id="Box" width="17" height="17" fill="none" />
+                    <path id="Path1994" data-name="Path 1994" d="M97-8.286h2.805v-8.229H97Zm15.429-7.543a1.391,1.391,0,0,0-1.4-1.371H106.6l.666-3.134.021-.219a1.021,1.021,0,0,0-.309-.727l-.743-.72-4.615,4.519a1.326,1.326,0,0,0-.414.967v6.857a1.391,1.391,0,0,0,1.4,1.371h6.312a1.394,1.394,0,0,0,1.29-.837l2.118-4.834a1.328,1.328,0,0,0,.1-.5v-1.31l-.007-.007Z" transform="translate(-96.143 23.714)" fill="white" style={item.nota >= 5 ? { fill: '#0B3B0B' } : item.nota === 4 ? { fill: '#64FE2E' } : item.nota === 3 ? { fill: 'yellow' } : { fill: 'red' }} />
+                </Svg>
+            </div>
+        </NameBox>
+        <Textslide>{item.overview}</Textslide>
+    </Contmap>
+
+))}
+</div>*/
