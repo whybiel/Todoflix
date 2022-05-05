@@ -92,7 +92,6 @@ export default class App extends React.Component {
     state = {
         filmes: Movies,
         Filter: [],
-        modal: true
     }
     async componentDidMount() {
         this.movies()
@@ -121,9 +120,7 @@ export default class App extends React.Component {
             Filter: FilmsConvert
         })
     }
-    closemodalsearch = () => {
-        this.setState({modal:false })
-      }
+    
     render() {
         const {close} = this.props
         return (

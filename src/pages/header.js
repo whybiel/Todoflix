@@ -132,7 +132,7 @@ export default class App extends React.Component {
 
           <SubCont2>
             <BtnAdd onClick={this.openmodalbuton}>Adicionar Filme</BtnAdd>
-            {this.state.butonmodal && <BtnModal />}
+            {this.state.butonmodal && <BtnModal close={() => { this.setState({butonmodal: false }) }}/>}
             <Search type="text" placeholder="Pesquise" onChange={this.filterFilms} />
             <User>
               <UserImg src={Perfil} alt="icone de usuário" />
